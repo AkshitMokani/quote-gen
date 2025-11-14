@@ -4,5 +4,5 @@
   "description": "Generate blockchain quotes and share to Farcaster/X.",
   "imageUrl": "https://yourdomain.com/og-image.png",
   "version": "1",
-  "action": { "type": "open_url", "url": "https://yourdomain.com/" }
+  "action": { "type": "open_url", "url": "https://quotegen-omega.vercel.app/" }
 }
