@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { sdk } from "@farcaster/miniapp-sdk"; // <-- Import Farcaster SDK
+
 import Header from "../components/Header";
 import QuoteCard from "../components/QuoteCard";
 import CategorySelector from "../components/CategorySelector";
@@ -16,6 +18,11 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("random");
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Signal to Farcaster MiniApp that the app is ready
+  useEffect(() => {
+    sdk.actions.ready();
+  }, []);
 
   // Load saved history from localStorage on mount
   useEffect(() => {
@@ -72,7 +79,10 @@ export default function Home() {
 
     setHistory((prev) => [
       {
-        id: typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : Date.now() + Math.random(),
+        id:
+          typeof crypto !== "undefined" && crypto.randomUUID
+            ? crypto.randomUUID()
+            : Date.now() + Math.random(),
         text,
         cat: category,
       },
