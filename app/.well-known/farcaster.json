@@ -1,8 +1,0 @@
-{
-  "name": "QuoteGen",
-  "slug": "quotegen",
-  "description": "Generate blockchain quotes and share to Farcaster/X.",
-  "imageUrl": "https://quotegen-omega.vercel.app/og-image.png",
-  "version": "1",
-  "action": { "type": "open_url", "url": "https://quotegen-omega.vercel.app/" }
-}
