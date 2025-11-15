@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { sdk } from "@farcaster/miniapp-sdk"; // <-- Import Farcaster SDK
+import Head from "next/head";  // <-- Import Head for metadata
+import { sdk } from "@farcaster/miniapp-sdk";
 
 import Header from "../components/Header";
 import QuoteCard from "../components/QuoteCard";
@@ -97,73 +98,94 @@ export default function Home() {
   };
 
   return (
-    <main className="container">
-      <Header subtitle="Blockchain Quotes - Mini App" />
-
-      {/* MAIN QUOTE CARD */}
-      <section className="card mb-6">
-        <div className="quote-box" aria-live="polite">
-          {loading ? (
-            <p className="text-slate-400 text-sm">Loading quotes…</p>
-          ) : currentQuote ? (
-            <QuoteCard text={currentQuote} />
-          ) : (
-            <p className="text-slate-400 text-sm">Tap Generate to get a quote…</p>
-          )}
-        </div>
-
-        {/* Category Picker */}
-        <div className="mt-5">
-          <CategorySelector
-            categories={categories}
-            value={selectedCategory}
-            onChange={setSelectedCategory}
-          />
-        </div>
-
-        {/* Buttons */}
-        <div className="mt-6 flex flex-wrap gap-3">
-          <button
-            onClick={generateQuote}
-            className="btn btn-primary"
-            aria-label="Generate a new blockchain quote"
-            disabled={loading}
-          >
-            Generate Quote
-          </button>
-
-          {currentQuote && (
-            <>
-              <button
-                onClick={() => shareOnFarcaster(currentQuote)}
-                className="btn btn-ghost"
-                aria-label="Share quote on Farcaster"
-              >
-                Share on Farcaster
-              </button>
-
-              <button
-                onClick={() => shareOnX(currentQuote)}
-                className="btn btn-ghost"
-                aria-label="Share quote on X (Twitter)"
-              >
-                Share on X
-              </button>
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* HISTORY */}
-      <section className="card">
-        <h2 className="text-lg font-semibold mb-3">History</h2>
-
-        <HistoryList
-          items={history}
-          onShareFarcaster={shareOnFarcaster}
-          onShareX={shareOnX}
+    <>
+      <Head>
+        <title>QuoteGen - Your daily dose of blockchain wisdom</title>
+        <meta
+          name="description"
+          content="Generate blockchain quotes and share to Farcaster or X"
         />
-      </section>
-    </main>
+        <meta property="og:title" content="QuoteGen - Blockchain Quotes Mini App" />
+        <meta
+          property="og:description"
+          content="Generate blockchain quotes and share to Farcaster or X"
+        />
+        <meta
+          property="og:image"
+          content="https://quotegen-omega.vercel.app/icon.png"
+        />
+        <meta property="og:url" content="https://quotegen-omega.vercel.app" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
+      <main className="container">
+        <Header subtitle="Blockchain Quotes - Mini App" />
+
+        {/* MAIN QUOTE CARD */}
+        <section className="card mb-6">
+          <div className="quote-box" aria-live="polite">
+            {loading ? (
+              <p className="text-slate-400 text-sm">Loading quotes…</p>
+            ) : currentQuote ? (
+              <QuoteCard text={currentQuote} />
+            ) : (
+              <p className="text-slate-400 text-sm">Tap Generate to get a quote…</p>
+            )}
+          </div>
+
+          {/* Category Picker */}
+          <div className="mt-5">
+            <CategorySelector
+              categories={categories}
+              value={selectedCategory}
+              onChange={setSelectedCategory}
+            />
+          </div>
+
+          {/* Buttons */}
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button
+              onClick={generateQuote}
+              className="btn btn-primary"
+              aria-label="Generate a new blockchain quote"
+              disabled={loading}
+            >
+              Generate Quote
+            </button>
+
+            {currentQuote && (
+              <>
+                <button
+                  onClick={() => shareOnFarcaster(currentQuote)}
+                  className="btn btn-ghost"
+                  aria-label="Share quote on Farcaster"
+                >
+                  Share on Farcaster
+                </button>
+
+                <button
+                  onClick={() => shareOnX(currentQuote)}
+                  className="btn btn-ghost"
+                  aria-label="Share quote on X (Twitter)"
+                >
+                  Share on X
+                </button>
+              </>
+            )}
+          </div>
+        </section>
+
+        {/* HISTORY */}
+        <section className="card">
+          <h2 className="text-lg font-semibold mb-3">History</h2>
+
+          <HistoryList
+            items={history}
+            onShareFarcaster={shareOnFarcaster}
+            onShareX={shareOnX}
+          />
+        </section>
+      </main>
+    </>
   );
 }
