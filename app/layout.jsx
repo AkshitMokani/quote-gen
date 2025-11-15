@@ -1,9 +1,9 @@
 import './globals.css'
-import FarcasterMeta from '../components/FarcasterMeta'
+import FarcasterMetaInject from '../components/FarcasterMetaInject'
 
-const fcMiniappContent = JSON.stringify({
+const fcMiniappMeta = JSON.stringify({
   version: "1",
-  imageUrl: "https://quotegen-omega.vercel.app/icon.png",
+  imageUrl: "https://quotegen-omega.vercel.app/QuoteGen.png",
   button: {
     title: "Open QuoteGen",
     action: {
@@ -16,8 +16,22 @@ const fcMiniappContent = JSON.stringify({
 export const metadata = {
   title: 'QuoteGen - Farcaster MiniApp',
   description: 'Generate blockchain quotes and share to Farcaster or X',
+  openGraph: {
+    title: 'QuoteGen - Farcaster MiniApp',
+    description: 'Generate blockchain quotes and share to Farcaster or X',
+    images: ['https://quotegen-omega.vercel.app/QuoteGen.png'],
+    url: 'https://quotegen-omega.vercel.app',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'QuoteGen - Farcaster MiniApp',
+    description: 'Generate blockchain quotes and share to Farcaster or X',
+    images: ['https://quotegen-omega.vercel.app/QuoteGen.png'],
+  },
   other: {
-    'fc:miniapp': fcMiniappContent
+    'fc:miniapp': fcMiniappMeta,
+    'fc:frame': fcMiniappMeta
   }
 }
 
@@ -25,7 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <FarcasterMeta />
+        <FarcasterMetaInject />
         {children}
       </body>
     </html>
