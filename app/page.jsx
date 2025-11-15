@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Head from "next/head";  // <-- Import Head for metadata
 import { sdk } from "@farcaster/miniapp-sdk";
 
 import Header from "../components/Header";
@@ -99,25 +98,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>QuoteGen - Your daily dose of blockchain wisdom</title>
-        <meta
-          name="description"
-          content="Generate blockchain quotes and share to Farcaster or X"
-        />
-        <meta property="og:title" content="QuoteGen - Blockchain Quotes Mini App" />
-        <meta
-          property="og:description"
-          content="Generate blockchain quotes and share to Farcaster or X"
-        />
-        <meta
-          property="og:image"
-          content="https://quotegen-omega.vercel.app/icon.png"
-        />
-        <meta property="og:url" content="https://quotegen-omega.vercel.app" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
       <main className="container">
         <Header subtitle="Blockchain Quotes - Mini App" />
 
